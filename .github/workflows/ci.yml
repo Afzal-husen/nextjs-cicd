@@ -1,20 +1,20 @@
-name: NextJS CI
+name: CI - Build and test
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
-  nextjs-ci:
+  build-and-test-ci:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: setup nodejs
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
 
@@ -23,3 +23,6 @@ jobs:
 
       - name: run lint
         run: npm run lint
+
+      - name: run build
+        run: npm run build
